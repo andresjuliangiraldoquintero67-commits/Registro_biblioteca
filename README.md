@@ -20,7 +20,7 @@ El repositorio contiene los siguientes elementos para su evaluación y ejecució
 El modelo consta de tres tablas principales (`autores`, `editores`, `libros`) vinculadas mediante relaciones de uno a muchos (1:N), cumpliendo con los principios de normalización.
 
 * **Vista del Modelo en MySQL Workbench:**
-  ![Diagrama EER de la Base de Datos](images/diagrama_eer.png)
+  ![Diagrama EER de la Base de Datos](images/diagrama_err.png)
 
 ---
 
@@ -31,15 +31,7 @@ En el diseño de las llaves foráneas (`FK`) de la tabla `libros`, se implementa
 
 ---
 
-## 🧪 3. Pruebas de Integridad Referencial (Evidencia)
-Para comprobar que las restricciones funcionan adecuadamente, se ejecutó una prueba de borrado sobre un autor con libros asociados, obteniendo con éxito la protección de los datos:
-
-* **Bloqueo de borrado (Error 1451):**
-  ![Prueba de Error 1451 por restricción de FK](images/prueba_error_1451.png)
-
----
-
-## 📈 4. Justificación Teórica de la Normalización (3FN)
+## 📈 3. Justificación Teórica de la Normalización (3FN)
 * **Primera Forma Normal (1FN):** Todos los atributos son atómicos y contienen valores individuales; no existen grupos repetidos ni columnas múltiples para un mismo dato.
 * **Segunda Forma Normal (1FN + Sin dependencias parciales):** Las claves primarias de cada tabla son simples (`SERIAL` / `INT`), lo que descarta por completo la existencia de dependencias parciales.
 * **Tercera Forma Normal (2FN + Sin dependencias transitivas):** Se eliminaron las dependencias transitivas aislando los datos de los autores y editores en sus respectivas tablas (`autores`, `editores`). En la tabla `libros` únicamente residen las claves foráneas, logrando que cada atributo no clave dependa única y exclusivamente de la clave primaria de su propia entidad.
